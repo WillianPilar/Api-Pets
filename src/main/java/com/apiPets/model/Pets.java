@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 @Entity
 public class Pets {
 
@@ -15,23 +13,18 @@ public class Pets {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@JsonProperty("nome")
 	@Column
 	private String nome;
 
-	@JsonProperty("idade")
 	@Column
 	private int idade;
 
-	@JsonProperty("dono")
 	@Column
 	private String dono;
 
-	@JsonProperty("dataCadastro")
 	@Column
 	private String dataCadastro;
 
-	@JsonProperty("petAtivo")
 	@Column
 	private boolean ativo;
 

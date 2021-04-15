@@ -1,19 +1,21 @@
 package com.apiPets.model.dto;
 
-public class DonoDTO {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-	private String nome;
+public class DonoDTO {
+	
+	@JsonProperty("nomeDono")
+	private String nomeDono;
 	private String dataNascimento;
 	private String cpf;
 	private String endereco;
-	private String idade;
 
 	public String getNome() {
-		return nome;
+		return nomeDono;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nomeDono = nome;
 	}
 
 	public String getDataNascimento() {
@@ -38,14 +40,6 @@ public class DonoDTO {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
-
-	public String getIdade() {
-		return idade;
-	}
-
-	public void setIdade(String idade) {
-		this.idade = idade;
 	}
 
 }
