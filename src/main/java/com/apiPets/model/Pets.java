@@ -1,12 +1,20 @@
 package com.apiPets.model;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
+@Table(name = "tb_pets")
 public class Pets {
 
 	@Id
@@ -16,17 +24,23 @@ public class Pets {
 	@Column
 	private String nome;
 
-	@Column
-	private int idade;
-
-	@Column
-	private String dono;
-
-	@Column
-	private String dataCadastro;
-
+	@Column(name = "data_nascimento")
+	private Timestamp dataNascimento;
+	
+	@Column(name = "raca")
+	private String raca;
+	
 	@Column
 	private boolean ativo;
+
+	@Column(name = "data_cadastro", updatable = false)
+	@JsonFormat(pattern = "dd/MM/yyyy")//Formatar o JSON de data que receber para o formato passado no pattern
+	public LocalDate dataCadastro;
+	
+	@PrePersist //executa método anotado antes da entidade ser persistida (salva no BD)
+	public void prePersist() {
+		setDataCadastro(LocalDate.now());
+	}
 
 	public int getId() {
 		return id;
@@ -44,28 +58,20 @@ public class Pets {
 		this.nome = nome;
 	}
 
-	public int getIdade() {
-		return idade;
+	public Timestamp getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setDataNascimento(Timestamp dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
-	public String getDono() {
-		return dono;
+	public String getRaca() {
+		return raca;
 	}
 
-	public void setDono(String dono) {
-		this.dono = dono;
-	}
-
-	public String getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(String dataCadastro) {
-		this.dataCadastro = dataCadastro;
+	public void setRaca(String raca) {
+		this.raca = raca;
 	}
 
 	public boolean isAtivo() {
@@ -74,6 +80,14 @@ public class Pets {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 }

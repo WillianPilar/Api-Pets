@@ -4,8 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PetDTO {
 
+	@JsonProperty("nome")
 	private String nome;
-	private int idade;
+	
+	@JsonProperty("dataNascimento")
+	private String dataNascimento;
+	
+	@JsonProperty("raca")
+	private String raca;
+	
 	@JsonProperty("petAtivo")
 	private boolean petAtivo;
 
@@ -17,12 +24,20 @@ public class PetDTO {
 		this.nome = nome;
 	}
 
-	public int getIdade() {
-		return idade;
+	public String getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getRaca() {
+		return raca;
+	}
+
+	public void setRaca(String raca) {
+		this.raca = raca;
 	}
 
 	public boolean isPetAtivo() {
@@ -32,4 +47,5 @@ public class PetDTO {
 	public void setPetAtivo(boolean petAtivo) {
 		this.petAtivo = petAtivo;
 	}
+
 }

@@ -2,17 +2,8 @@ package com.apiPets.model.dto;
 
 public class NewPetRequestDTO {
 
-	private String dataCadastro;
 	private PetDTO pet;
-	private DonoDTO dono;
-
-	public String getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(String dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
+	private SearchDonoDTO dono;
 
 	public PetDTO getPet() {
 		return pet;
@@ -22,11 +13,11 @@ public class NewPetRequestDTO {
 		this.pet = pet;
 	}
 
-	public DonoDTO getDono() {
+	public SearchDonoDTO getDono() {
 		return dono;
 	}
 
-	public void setDono(DonoDTO dono) {
+	public void setDono(SearchDonoDTO dono) {
 		this.dono = dono;
 	}
 
