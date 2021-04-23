@@ -1,6 +1,7 @@
 package com.apiPets.service.impl;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,7 @@ public class PetsServiceImpl implements PetsService {
 		LOGGER.info("Processando data de nascimento do pet");
 		Timestamp dataNascPet = Timestamp.valueOf(petRequest.getPet().getDataNascimento());
 		
+		LOGGER.info("Processando dados do pet");
 		Pets pet = new Pets();
 		pet.setNome(petRequest.getPet().getNome());
 		pet.setRaca(petRequest.getPet().getRaca());
@@ -37,8 +39,21 @@ public class PetsServiceImpl implements PetsService {
 
 	@Override
 	public String save(Pets pet) {
-		repository.save(pet);
+		try {
+			repository.save(pet);
+		} catch (Exception e) {
+			LOGGER.error("Erro ao tentar salvar os dados do Pet. ", e);
+			return "Pet não foi salvo, algum erro ocorreu";
+		}
+		
 		return "Pet salvo com sucesso!";
+	}
+
+	@Override
+	public List<Pets> SearchPet(String name) {
+		
+		List<Pets> petsReturn = repository.findByNome(name);
+		return petsReturn;
 	}
 
 }
